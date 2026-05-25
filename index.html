@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Heckman Global — Capital Raising & Placement Advisory for Private Investment Funds</title>
+<meta name="description" content="Heckman Global is a sales, marketing, and placement agent firm for private investment funds. We pair institutional-grade distribution with AI-driven precision." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============ TOKENS ============ */
+  :root {
+    --bg: #F1ECE2;          /* warm parchment */
+    --bg-alt: #ECE6D9;
+    --ink: #0F0E0C;         /* near-black warm */
+    --ink-soft: #2A2620;
+    --muted: #6B6457;
+    --rule: #1F1B14;
+    --gold: #8A6E2F;        /* muted antique gold */
+    --gold-warm: #B5934A;
+    --paper: #FAF7F0;
+    --noise-opacity: 0.06;
+
+    /* Inverted (dark sections) */
+    --ink-dark: #0B0A08;
+    --ink-dark-alt: #131210;
+    --paper-on-dark: #E9E3D4;
+
+    --serif: "Fraunces", "Cormorant Garamond", Georgia, serif;
+    --sans: "Instrument Sans", system-ui, -apple-system, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+
+    --container: 1320px;
+    --gutter: clamp(20px, 4vw, 56px);
+    --ease: cubic-bezier(.22, .61, .36, 1);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Subtle grain texture overlay for warmth */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: var(--noise-opacity);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
+    mix-blend-mode: multiply;
+  }
+
+  ::selection { background: var(--gold); color: var(--paper); }
+
+  /* ============ TYPOGRAPHY ============ */
+  h1, h2, h3, h4 {
+    font-family: var(--serif);
+    font-weight: 360;
+    letter-spacing: -0.02em;
+    line-height: 1.02;
+    margin: 0;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "WONK" 0;
+  }
+  .display {
+    font-size: clamp(56px, 9.5vw, 156px);
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    font-weight: 340;
+  }
+  .display em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
+    color: var(--gold);
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(20px, 2vw, 28px);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--ink-soft);
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ============ LAYOUT ============ */
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    position: relative;
+    z-index: 2;
+  }
+
+  section { position: relative; z-index: 2; }
+  .rule { height: 1px; background: var(--rule); opacity: 0.18; }
+
+  /* ============ NAV ============ */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 22px var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(12px);
+    background: rgba(241, 236, 226, 0.72);
+    border-bottom: 1px solid rgba(31, 27, 20, 0.08);
+    transition: padding .3s var(--ease);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    line-height: 1;
+  }
+  .brand svg { display: block; }
+  .nav-links {
+    display: flex; gap: 36px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .nav-links a {
+    position: relative;
+    padding: 6px 0;
+    transition: color .3s var(--ease);
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: 0;
+    height: 1px; width: 0; background: var(--gold);
+    transition: width .35s var(--ease);
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    transition: all .3s var(--ease);
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--paper); }
+
+  @media (max-width: 820px) {
+    .nav-links { display: none; }
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 180px var(--gutter) 80px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    max-width: var(--container);
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-meta .meta-block { display: flex; flex-direction: column; gap: 8px; }
+  .hero-meta .meta-val { font-family: var(--mono); font-size: 13px; color: var(--ink-soft); }
+  .hero-headline {
+    margin-top: 24px;
+    animation: rise 1.1s var(--ease) both;
+  }
+  .hero-sub {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-top: 56px;
+  }
+  .hero-sub .lede { max-width: 56ch; }
+  .hero-actions { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 16px 28px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all .35s var(--ease);
+    cursor: pointer;
+    border: 1px solid var(--ink);
+  }
+  .btn-primary { background: var(--ink); color: var(--paper); }
+  .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+  .btn-ghost { background: transparent; color: var(--ink); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn .arrow { transition: transform .35s var(--ease); }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  @media (max-width: 820px) {
+    .hero-sub { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  @keyframes rise {
+    0% { opacity: 0; transform: translateY(28px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ MARQUEE / TICKER ============ */
+  .ticker {
+    border-top: 1px solid rgba(31, 27, 20, 0.18);
+    border-bottom: 1px solid rgba(31, 27, 20, 0.18);
+    overflow: hidden;
+    padding: 22px 0;
+    background: var(--bg-alt);
+  }
+  .ticker-track {
+    display: flex; gap: 80px;
+    animation: scroll 50s linear infinite;
+    white-space: nowrap;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .ticker-track span {
+    display: inline-flex; align-items: center; gap: 14px;
+  }
+  .ticker-track .dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ============ POSITIONING SECTION ============ */
+  .positioning {
+    padding: 140px var(--gutter);
+  }
+  .position-grid {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .position-grid .eyebrow { padding-top: 12px; border-top: 1px solid var(--ink); display: inline-block; }
+  .big-statement {
+    font-family: var(--serif);
+    font-size: clamp(36px, 4.6vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    font-weight: 320;
+  }
+  .big-statement em {
+    font-style: italic; color: var(--gold);
+    font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
+  }
+  .big-statement .strike {
+    text-decoration: line-through;
+    text-decoration-color: var(--gold-warm);
+    text-decoration-thickness: 2px;
+    color: var(--muted);
+  }
+  @media (max-width: 820px) {
+    .position-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* ============ SERVICES ============ */
+  .services {
+    background: var(--ink-dark);
+    color: var(--paper-on-dark);
+    padding: 140px var(--gutter) 160px;
+    position: relative;
+    overflow: hidden;
+  }
+  .services::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top right, rgba(181, 147, 74, 0.08), transparent 60%);
+    pointer-events: none;
+  }
+  .services .container { position: relative; }
+  .services-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 100px;
+    align-items: end;
+  }
+  .services-head h2 {
+    font-size: clamp(44px, 6vw, 92px);
+    color: var(--paper-on-dark);
+  }
+  .services-head h2 em { color: var(--gold-warm); font-style: italic; }
+  .services-head .lede { color: rgba(233, 227, 212, 0.78); }
+  .services-head .eyebrow { color: var(--gold-warm); }
+
+  .service-list { display: flex; flex-direction: column; }
+  .service {
+    display: grid;
+    grid-template-columns: 80px 1fr 1.4fr 100px;
+    gap: 40px;
+    padding: 42px 0;
+    border-top: 1px solid rgba(233, 227, 212, 0.15);
+    align-items: start;
+    transition: background .4s var(--ease);
+    position: relative;
+  }
+  .service:last-child { border-bottom: 1px solid rgba(233, 227, 212, 0.15); }
+  .service:hover { background: rgba(233, 227, 212, 0.03); }
+  .service-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--gold-warm);
+    letter-spacing: 0.18em;
+    padding-top: 6px;
+  }
+  .service h3 {
+    font-size: clamp(28px, 3vw, 42px);
+    color: var(--paper-on-dark);
+    font-weight: 340;
+  }
+  .service h3 em { font-style: italic; color: var(--gold-warm); }
+  .service p {
+    color: rgba(233, 227, 212, 0.75);
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .service-arrow {
+    justify-self: end;
+    width: 44px; height: 44px;
+    border: 1px solid rgba(233, 227, 212, 0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .35s var(--ease);
+    margin-top: 6px;
+  }
+  .service:hover .service-arrow {
+    background: var(--gold-warm);
+    border-color: var(--gold-warm);
+    transform: rotate(-45deg);
+  }
+  .service-arrow svg { width: 16px; height: 16px; }
+
+  @media (max-width: 820px) {
+    .services-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 60px; }
+    .service { grid-template-columns: 60px 1fr; gap: 16px; }
+    .service > p, .service-arrow { grid-column: 1 / -1; }
+    .service-arrow { justify-self: start; margin-top: 12px; }
+  }
+
+  /* ============ AI APPROACH ============ */
+  .approach {
+    padding: 160px var(--gutter);
+    background: var(--bg);
+  }
+  .approach-head {
+    max-width: var(--container);
+    margin: 0 auto 100px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: end;
+  }
+  .approach-head h2 {
+    font-size: clamp(40px, 5.4vw, 78px);
+    letter-spacing: -0.03em;
+  }
+  .approach-head h2 em { color: var(--gold); font-style: italic; }
+
+  .approach-grid {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+  .pillar {
+    grid-column: span 6;
+    padding: 40px;
+    background: var(--paper);
+    border: 1px solid rgba(31, 27, 20, 0.08);
+    border-radius: 2px;
+    position: relative;
+    transition: transform .5s var(--ease), box-shadow .5s var(--ease);
+  }
+  .pillar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 60px -30px rgba(15, 14, 12, 0.18);
+  }
+  .pillar .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 28px;
+    display: block;
+  }
+  .pillar h4 {
+    font-size: 28px;
+    margin-bottom: 16px;
+    font-weight: 360;
+  }
+  .pillar p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.65;
+    margin: 0;
+  }
+  .pillar.tall { grid-column: span 6; }
+  .pillar.wide { grid-column: span 12; }
+
+  @media (max-width: 820px) {
+    .approach-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 60px; }
+    .pillar, .pillar.tall, .pillar.wide { grid-column: span 12; padding: 28px; }
+  }
+
+  /* ============ NUMBERS ============ */
+  .numbers {
+    padding: 120px var(--gutter);
+    background: var(--bg-alt);
+    border-top: 1px solid rgba(31, 27, 20, 0.1);
+    border-bottom: 1px solid rgba(31, 27, 20, 0.1);
+  }
+  .numbers-grid {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 60px;
+  }
+  .stat .figure {
+    font-family: var(--serif);
+    font-size: clamp(56px, 7vw, 104px);
+    line-height: 0.92;
+    letter-spacing: -0.035em;
+    font-weight: 330;
+    color: var(--ink);
+    display: block;
+  }
+  .stat .figure em {
+    font-style: italic; color: var(--gold);
+    font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
+  }
+  .stat .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 16px;
+    display: block;
+    max-width: 22ch;
+  }
+  @media (max-width: 820px) {
+    .numbers-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  }
+
+  /* ============ FOUNDER ============ */
+  .founder {
+    padding: 160px var(--gutter);
+    background: var(--bg);
+  }
+  .founder-wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .founder-portrait {
+    aspect-ratio: 4 / 5;
+    background: #1A1812;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 40px 80px -40px rgba(15, 14, 12, 0.4);
+  }
+  .founder-portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 1;
+    display: block;
+    /* Subtle warm tone matching site palette */
+    filter: contrast(1.02) saturate(0.96);
+    transition: transform 1.2s var(--ease);
+  }
+  .founder-portrait:hover img {
+    transform: scale(1.03);
+  }
+  .founder-portrait::before {
+    /* Soft gradient overlay so the label and monogram remain legible */
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+      linear-gradient(180deg, rgba(15, 14, 12, 0.45) 0%, transparent 25%, transparent 70%, rgba(15, 14, 12, 0.35) 100%);
+    pointer-events: none;
+  }
+  .founder-portrait::after {
+    content: "MH";
+    position: absolute;
+    bottom: 32px;
+    right: 32px;
+    z-index: 3;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 96px;
+    color: rgba(241, 236, 226, 0.32);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .founder-portrait .portrait-label {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 3;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(241, 236, 226, 0.85);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  }
+  .founder-content .eyebrow {
+    padding-top: 12px;
+    border-top: 1px solid var(--ink);
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+
+  /* Mobile-only caption beneath the portrait */
+  .portrait-caption {
+    display: none;
+  }
+  @media (max-width: 820px) {
+    .portrait-caption {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(31, 27, 20, 0.18);
+    }
+    .caption-name {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+      color: var(--gold);
+      font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
+      line-height: 1;
+    }
+    .caption-role {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+  }
+  .founder-content h2 {
+    font-size: clamp(40px, 5vw, 72px);
+    margin-bottom: 32px;
+  }
+  .founder-content h2 em { color: var(--gold); font-style: italic; }
+  .founder-content p {
+    color: var(--ink-soft);
+    font-size: 17px;
+    line-height: 1.7;
+    margin: 0 0 22px 0;
+    max-width: 58ch;
+  }
+  .founder-content p:first-of-type { font-family: var(--serif); font-size: 22px; line-height: 1.5; color: var(--ink); font-weight: 300; }
+  .signature {
+    margin-top: 40px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    color: var(--gold);
+    font-variation-settings: "opsz" 144, "SOFT" 80, "WONK" 1;
+  }
+  .credentials {
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(31, 27, 20, 0.18);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .credentials .cred-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .credentials .cred-val {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink);
+  }
+  @media (max-width: 820px) {
+    .founder-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .credentials { grid-template-columns: 1fr; }
+  }
+
+  /* ============ SECTORS ============ */
+  .sectors {
+    padding: 140px var(--gutter);
+    background: var(--bg-alt);
+  }
+  .sectors-head {
+    max-width: var(--container);
+    margin: 0 auto 80px;
+    text-align: center;
+  }
+  .sectors-head h2 {
+    font-size: clamp(40px, 5.4vw, 78px);
+    margin: 16px auto 0;
+    max-width: 18ch;
+  }
+  .sectors-head h2 em { color: var(--gold); font-style: italic; }
+  .sectors-grid {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(31, 27, 20, 0.12);
+    border: 1px solid rgba(31, 27, 20, 0.12);
+  }
+  .sector {
+    background: var(--bg-alt);
+    padding: 48px 36px;
+    transition: background .4s var(--ease), color .4s var(--ease);
+    cursor: default;
+  }
+  .sector:hover { background: var(--ink); color: var(--paper-on-dark); }
+  .sector:hover .sector-num { color: var(--gold-warm); }
+  .sector:hover h4 em { color: var(--gold-warm); }
+  .sector-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 24px;
+    transition: color .4s var(--ease);
+    display: block;
+  }
+  .sector h4 {
+    font-size: 26px;
+    font-weight: 340;
+    margin-bottom: 12px;
+  }
+  .sector h4 em { font-style: italic; color: var(--gold); transition: color .4s var(--ease); }
+  .sector p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    opacity: 0.75;
+  }
+  @media (max-width: 820px) {
+    .sectors-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============ CTA ============ */
+  .cta {
+    padding: 180px var(--gutter);
+    background: var(--ink-dark);
+    color: var(--paper-on-dark);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(181, 147, 74, 0.12), transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(181, 147, 74, 0.08), transparent 50%);
+    pointer-events: none;
+  }
+  .cta .container { position: relative; }
+  .cta h2 {
+    font-size: clamp(48px, 8vw, 132px);
+    line-height: 0.95;
+    color: var(--paper-on-dark);
+    max-width: 14ch;
+    margin: 32px auto;
+    font-weight: 320;
+  }
+  .cta h2 em { font-style: italic; color: var(--gold-warm); }
+  .cta .eyebrow { color: var(--gold-warm); }
+  .cta .lede {
+    color: rgba(233, 227, 212, 0.7);
+    margin: 0 auto 56px;
+    max-width: 52ch;
+  }
+  .cta .btn-primary {
+    background: var(--gold-warm);
+    color: var(--ink-dark);
+    border-color: var(--gold-warm);
+    padding: 22px 40px;
+    font-size: 13px;
+  }
+  .cta .btn-primary:hover {
+    background: var(--paper-on-dark);
+    border-color: var(--paper-on-dark);
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--ink-dark-alt);
+    color: var(--paper-on-dark);
+    padding: 80px var(--gutter) 40px;
+    border-top: 1px solid rgba(233, 227, 212, 0.1);
+  }
+  .footer-grid {
+    max-width: var(--container);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 80px;
+  }
+  .footer-brand { }
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .footer-brand em { color: var(--gold-warm); font-style: italic; }
+  .footer-brand p {
+    font-family: var(--sans);
+    font-size: 14px;
+    color: rgba(233, 227, 212, 0.6);
+    line-height: 1.6;
+    margin-top: 0;
+    max-width: 36ch;
+    letter-spacing: 0;
+  }
+  .footer-col h5 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-warm);
+    margin: 0 0 18px;
+    font-weight: 500;
+  }
+  .footer-col ul { list-style: none; padding: 0; margin: 0; }
+  .footer-col li { margin-bottom: 10px; font-size: 14px; color: rgba(233, 227, 212, 0.75); }
+  .footer-col a { transition: color .3s var(--ease); }
+  .footer-col a:hover { color: var(--gold-warm); }
+  .footer-bottom {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding-top: 32px;
+    border-top: 1px solid rgba(233, 227, 212, 0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(233, 227, 212, 0.5);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  @media (max-width: 820px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  /* ============ REVEAL ANIMATIONS ============ */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <a href="#" class="brand" aria-label="Heckman Global">
+    <svg viewBox="0 0 220 44" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><clipPath id="nc"><circle cx="22" cy="22" r="16.5"/></clipPath></defs>
+      <!-- Globe -->
+      <circle cx="22" cy="22" r="17.5" stroke="#1C2E4A" stroke-width="1.4"/>
+      <g clip-path="url(#nc)" stroke="#1C2E4A" stroke-width="0.85" opacity="0.55">
+        <path d="M22,4.5 Q14.5,22 22,39.5" fill="none"/>
+        <path d="M22,4.5 L22,39.5" fill="none"/>
+        <path d="M22,4.5 Q29.5,22 22,39.5" fill="none"/>
+        <path d="M4.5,22 Q22,25.5 39.5,22" fill="none"/>
+        <path d="M8,13.5 Q22,16.5 36,13.5" fill="none"/>
+        <path d="M8,30.5 Q22,33.5 36,30.5" fill="none"/>
+      </g>
+      <!-- Vertical gold divider -->
+      <line x1="49" y1="8" x2="49" y2="36" stroke="#B5934A" stroke-width="1.2"/>
+      <!-- HECKMAN -->
+      <text x="57" y="21"
+        font-family="'Lora','Georgia','Times New Roman',serif"
+        font-size="15.5" font-weight="700" letter-spacing="2.5"
+        fill="#1C2E4A">HECKMAN</text>
+      <!-- Gold rule -->
+      <line x1="57" y1="25.5" x2="215" y2="25.5" stroke="#B5934A" stroke-width="0.8"/>
+      <!-- GLOBAL -->
+      <text x="57.5" y="37"
+        font-family="'JetBrains Mono','Courier New',monospace"
+        font-size="8" font-weight="400" letter-spacing="4.5"
+        fill="#B5934A">GLOBAL</text>
+    </svg>
+  </a>
+  <nav class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#approach">Approach</a>
+    <a href="#founder">Founder</a>
+    <a href="#sectors">Sectors</a>
+  </nav>
+  <a href="#contact" class="nav-cta">Begin a Conversation</a>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-meta">
+      <div class="meta-block">
+        <span class="eyebrow">Heckman Global · Est. 2026</span>
+        <span class="meta-val">Boston · London · Singapore</span>
+      </div>
+      <div class="meta-block" style="text-align: right;">
+        <span class="eyebrow">Confidential Engagements</span>
+        <span class="meta-val">Private Investment Funds Only</span>
+      </div>
+    </div>
+
+    <h1 class="display hero-headline">
+      Capital,<br />
+      <em>distributed</em><br />
+      with precision.
+    </h1>
+
+    <div class="hero-sub">
+      <p class="lede">
+        A specialist sales, marketing, and placement agent firm for private investment funds — pairing institutional-grade distribution with AI-driven precision at every stage of the raise.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">
+          Engage the Firm
+          <span class="arrow">→</span>
+        </a>
+        <a href="#services" class="btn btn-ghost">
+          See Services
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Private Equity <i class="dot"></i></span>
+    <span>Venture Capital <i class="dot"></i></span>
+    <span>Private Credit <i class="dot"></i></span>
+    <span>Real Assets <i class="dot"></i></span>
+    <span>Hedge Funds <i class="dot"></i></span>
+    <span>Secondaries <i class="dot"></i></span>
+    <span>Infrastructure <i class="dot"></i></span>
+    <span>Co-Investments <i class="dot"></i></span>
+    <span>GP Stakes <i class="dot"></i></span>
+    <!-- duplicate for seamless scroll -->
+    <span>Private Equity <i class="dot"></i></span>
+    <span>Venture Capital <i class="dot"></i></span>
+    <span>Private Credit <i class="dot"></i></span>
+    <span>Real Assets <i class="dot"></i></span>
+    <span>Hedge Funds <i class="dot"></i></span>
+    <span>Secondaries <i class="dot"></i></span>
+    <span>Infrastructure <i class="dot"></i></span>
+    <span>Co-Investments <i class="dot"></i></span>
+    <span>GP Stakes <i class="dot"></i></span>
+  </div>
+</div>
+
+<!-- ============ POSITIONING ============ -->
+<section class="positioning">
+  <div class="position-grid">
+    <div>
+      <span class="eyebrow">The Thesis</span>
+    </div>
+    <div>
+      <p class="big-statement reveal">
+        The traditional placement model was built for a world of <span class="strike">printed pitch books</span> and quarterly LP letters. We built ours for a world where the right <em>LP</em>, the right <em>narrative</em>, and the right <em>moment</em> are identified, qualified, and engaged in days — not quarters.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="rule"></div></div>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-head reveal">
+      <div>
+        <span class="eyebrow">Capabilities · 01 / 04</span>
+        <h2>A complete <em>raise</em>, end to end.</h2>
+      </div>
+      <p class="lede">
+        Most agents handle introductions. We handle the full distribution stack — from narrative and positioning to LP targeting, outreach, diligence support, and close. Modular when you need it. Integrated when you don't.
+      </p>
+    </div>
+
+    <div class="service-list">
+      <div class="service reveal">
+        <span class="service-num">01</span>
+        <h3>Capital Raising & <em>Placement</em></h3>
+        <p>Institutional capital introduction across pensions, endowments, family offices, sovereigns, and consultants. Mandate-aligned LP targeting backed by proprietary allocation intelligence, structured outreach cadences, and full-cycle support from teaser to LPA.</p>
+        <div class="service-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="service reveal">
+        <span class="service-num">02</span>
+        <h3>Sales <em>Strategy</em> & Distribution</h3>
+        <p>End-to-end distribution architecture — channel design, sales process, CRM and pipeline discipline, and quota-bearing outbound built specifically for the private funds context. We don't outsource your raise; we operationalize it.</p>
+        <div class="service-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="service reveal">
+        <span class="service-num">03</span>
+        <h3>Marketing & <em>Narrative</em></h3>
+        <p>Pitch decks, teasers, DDQs, RFPs, market maps, and the strategic narrative that ties them together. Built to survive every IC table and every consultant screen. Every artifact is a working document, not a brochure.</p>
+        <div class="service-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+
+      <div class="service reveal">
+        <span class="service-num">04</span>
+        <h3>LP Relations & <em>IR</em></h3>
+        <p>Ongoing investor communications, quarterly cadence, AGM design, and post-close LP stewardship. The reasons LPs re-up are decided long before the next fund is announced. We build the relationship architecture that makes re-ups inevitable.</p>
+        <div class="service-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPROACH ============ -->
+<section class="approach" id="approach">
+  <div class="approach-head reveal">
+    <div>
+      <span class="eyebrow">Methodology</span>
+      <h2 style="margin-top:24px">An AI-native firm, built for <em>human</em> outcomes.</h2>
+    </div>
+    <p class="lede">
+      We operate as a small team of senior practitioners, augmented by a proprietary AI stack that compresses the work of a 30-person platform into the cadence of a focused engagement. The outcome: institutional reach, boutique attention, faster raises.
+    </p>
+  </div>
+
+  <div class="approach-grid">
+    <div class="pillar reveal">
+      <span class="num">— 01 / Intelligence</span>
+      <h4>LP universe, fully mapped.</h4>
+      <p>Continuous AI-driven monitoring of allocator pacing models, public filings, consultant rotations, and stated mandates. We approach each LP with the context they expect — and the timing they reward.</p>
+    </div>
+    <div class="pillar reveal">
+      <span class="num">— 02 / Narrative</span>
+      <h4>Positioning that survives diligence.</h4>
+      <p>Every pitch artifact is stress-tested against the questions LPs will actually ask. Investment thesis, team narrative, track record framing, and risk story — refined until they hold under pressure.</p>
+    </div>
+    <div class="pillar reveal">
+      <span class="num">— 03 / Outreach</span>
+      <h4>Personal, at institutional scale.</h4>
+      <p>AI-assisted personalization across every touchpoint — but every message reviewed, edited, and sent under senior partner authority. Volume of generic outreach is not our product. Conviction is.</p>
+    </div>
+    <div class="pillar reveal">
+      <span class="num">— 04 / Execution</span>
+      <h4>From first meeting to subscription.</h4>
+      <p>Pipeline management, side letter negotiation support, data room curation, DDQ response infrastructure, and close coordination — the unglamorous work that decides whether interest converts to commitments.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NUMBERS ============ -->
+<section class="numbers">
+  <div class="numbers-grid">
+    <div class="stat reveal">
+      <span class="figure">2,400<em>+</em></span>
+      <span class="label">Qualified institutional LPs in active coverage</span>
+    </div>
+    <div class="stat reveal">
+      <span class="figure">9<em>×</em></span>
+      <span class="label">Outreach throughput vs. traditional placement teams</span>
+    </div>
+    <div class="stat reveal">
+      <span class="figure">42<em>%</em></span>
+      <span class="label">Faster time to first close, on average</span>
+    </div>
+    <div class="stat reveal">
+      <span class="figure">100<em>%</em></span>
+      <span class="label">Senior partner attention on every engagement</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDER ============ -->
+<section class="founder" id="founder">
+  <div class="founder-wrap">
+    <div class="founder-portrait reveal">
+      <img src="max-heckman.jpg" alt="Max Heckman, Managing Partner, Heckman Global" />
+      <span class="portrait-label">— Managing Partner</span>
+    </div>
+    <figcaption class="portrait-caption">
+      <span class="caption-name">Max Heckman</span>
+      <span class="caption-role">— Managing Partner, Heckman Global</span>
+    </figcaption>
+    <div class="founder-content reveal">
+      <span class="eyebrow">The Founder</span>
+      <h2>Max <em>Heckman</em></h2>
+      <p>
+        "Private funds distribution is one of the last corners of finance where the work is still done by hand. That's not a virtue — it's an inefficiency. The firms that compress that distance first will win the next decade of allocations."
+      </p>
+      <p>
+        Max Heckman founded Heckman Global to bring the discipline of institutional placement together with the leverage of modern AI. His thesis is straightforward: the firms that compress the distance between a fund's positioning and the right LP's allocation decision will compound advantage faster than incumbents can react.
+      </p>
+      <p>
+        Before Heckman Global, Max spent the better part of two decades inside the placement and investor relations functions of leading alternative asset managers, where he saw firsthand how much of the raise is friction the LP never sees. Heckman Global is the firm he wanted to hire when he sat on the GP side.
+      </p>
+      <div class="signature">— Max Heckman</div>
+
+      <div class="credentials">
+        <div>
+          <span class="cred-label">Mandates Closed</span>
+          <span class="cred-val">Cumulative across PE, VC, Credit, Real Assets</span>
+        </div>
+        <div>
+          <span class="cred-label">Coverage</span>
+          <span class="cred-val">North America · EMEA · APAC · GCC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="rule"></div></div>
+
+<!-- ============ SECTORS ============ -->
+<section class="sectors" id="sectors">
+  <div class="sectors-head">
+    <span class="eyebrow">Strategy Coverage</span>
+    <h2>Where we <em>deploy</em>.</h2>
+  </div>
+  <div class="sectors-grid">
+    <div class="sector reveal">
+      <span class="sector-num">— S/01</span>
+      <h4>Private <em>Equity</em></h4>
+      <p>Buyout, growth equity, lower middle-market and sector specialists. First-time funds welcome where the thesis is differentiated.</p>
+    </div>
+    <div class="sector reveal">
+      <span class="sector-num">— S/02</span>
+      <h4>Venture <em>Capital</em></h4>
+      <p>Early through growth stage funds, deep-tech, AI-native, climate, and emerging-market platforms.</p>
+    </div>
+    <div class="sector reveal">
+      <span class="sector-num">— S/03</span>
+      <h4>Private <em>Credit</em></h4>
+      <p>Direct lending, asset-based finance, mezzanine, special situations, NAV financing, and structured strategies.</p>
+    </div>
+    <div class="sector reveal">
+      <span class="sector-num">— S/04</span>
+      <h4>Real <em>Assets</em></h4>
+      <p>Real estate (all sectors), infrastructure, energy transition, natural capital, and real asset secondaries.</p>
+    </div>
+    <div class="sector reveal">
+      <span class="sector-num">— S/05</span>
+      <h4>Hedge <em>Funds</em></h4>
+      <p>Differentiated long/short, macro, multi-strat, and quantitative platforms with a clear capacity discipline.</p>
+    </div>
+    <div class="sector reveal">
+      <span class="sector-num">— S/06</span>
+      <h4>Secondaries & <em>Co-Invest</em></h4>
+      <p>GP-led continuations, LP portfolio transactions, structured secondaries, and co-investment programs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA / CONTACT ============ -->
+<section class="cta" id="contact">
+  <div class="container">
+    <span class="eyebrow">For General Partners</span>
+    <h2>The next <em>raise</em><br />starts here.</h2>
+    <p class="lede">
+      We work with a small, deliberate roster of fund managers each year. Engagements begin with a confidential conversation — no pitch, no obligation, no boilerplate.
+    </p>
+    <a href="mailto:max@heckmanglobal.com" class="btn btn-primary">
+      max@heckmanglobal.com
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">
+        <svg viewBox="0 0 260 52" height="44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><clipPath id="fc"><circle cx="26" cy="26" r="19.5"/></clipPath></defs>
+          <!-- Globe -->
+          <circle cx="26" cy="26" r="20.5" stroke="#E9E3D4" stroke-width="1.5"/>
+          <g clip-path="url(#fc)" stroke="#E9E3D4" stroke-width="1" opacity="0.45">
+            <path d="M26,5.5 Q17,26 26,46.5" fill="none"/>
+            <path d="M26,5.5 L26,46.5" fill="none"/>
+            <path d="M26,5.5 Q35,26 26,46.5" fill="none"/>
+            <path d="M5.5,26 Q26,30 46.5,26" fill="none"/>
+            <path d="M9.5,16 Q26,19.5 42.5,16" fill="none"/>
+            <path d="M9.5,36 Q26,39.5 42.5,36" fill="none"/>
+          </g>
+          <!-- Vertical gold divider -->
+          <line x1="58" y1="10" x2="58" y2="42" stroke="#B5934A" stroke-width="1.3"/>
+          <!-- HECKMAN -->
+          <text x="68" y="26"
+            font-family="'Lora','Georgia','Times New Roman',serif"
+            font-size="18.5" font-weight="700" letter-spacing="3"
+            fill="#E9E3D4">HECKMAN</text>
+          <!-- Gold rule -->
+          <line x1="68" y1="31" x2="256" y2="31" stroke="#B5934A" stroke-width="0.9"/>
+          <!-- GLOBAL -->
+          <text x="69" y="44"
+            font-family="'JetBrains Mono','Courier New',monospace"
+            font-size="9.5" font-weight="400" letter-spacing="5.5"
+            fill="#B5934A">GLOBAL</text>
+        </svg>
+      </div>
+      <p>A specialist sales, marketing, and placement agent firm for private investment funds. AI-native. Senior-led. Built for the next decade of allocations.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Firm</h5>
+      <ul>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#founder">Founder</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Capital Raising</a></li>
+        <li><a href="#services">Sales Strategy</a></li>
+        <li><a href="#services">Marketing & Narrative</a></li>
+        <li><a href="#services">LP Relations</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="mailto:max@heckmanglobal.com">max@heckmanglobal.com</a></li>
+        <li>Boston</li>
+        <li>London</li>
+        <li>Singapore</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Heckman Global LLC · All Rights Reserved</span>
+    <span>Confidential · For Qualified Institutional Investors</span>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveals
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Nav compress on scroll
+  const nav = document.querySelector('.nav');
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y > 40) {
+      nav.style.padding = '14px var(--gutter)';
+      nav.style.background = 'rgba(241, 236, 226, 0.92)';
+    } else {
+      nav.style.padding = '22px var(--gutter)';
+      nav.style.background = 'rgba(241, 236, 226, 0.72)';
+    }
+    lastY = y;
+  });
+</script>
+
+</body>
+</html>
