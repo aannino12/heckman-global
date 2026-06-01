@@ -648,10 +648,51 @@
     font-size: 18px;
     color: var(--ink);
   }
+  .credentials .cred-direct { grid-column: 1 / -1; }
+  .credentials .cred-email {
+    display: inline-block;
+    transition: color .3s var(--ease);
+    border-bottom: 1px solid rgba(138, 110, 47, 0.4);
+    padding-bottom: 2px;
+  }
+  .credentials .cred-email:hover { color: var(--gold); border-bottom-color: var(--gold); }
   @media (max-width: 820px) {
     .founder-wrap { grid-template-columns: 1fr; gap: 40px; }
     .credentials { grid-template-columns: 1fr; }
   }
+
+  /* ============ LEADERSHIP (multi-partner) ============ */
+  .leadership-head {
+    margin: 0 auto 96px;
+    text-align: center;
+  }
+  .leadership-head .eyebrow {
+    display: inline-block;
+    padding-top: 12px;
+    border-top: 1px solid var(--ink);
+    margin-bottom: 20px;
+  }
+  .leadership-head .leadership-title {
+    font-size: clamp(40px, 5.4vw, 78px);
+    margin: 0 auto;
+    max-width: 20ch;
+  }
+  .leadership-head .leadership-title em { color: var(--gold); font-style: italic; }
+
+  /* Spacing between successive partner blocks */
+  .founder-wrap + .partner-divider { margin-top: 0; }
+  .partner-divider { max-width: var(--container); margin: 88px auto; }
+
+  /* Reversed layout: content left, portrait right (desktop only) */
+  @media (min-width: 821px) {
+    .founder-wrap.reverse { grid-template-columns: 1.6fr 1fr; }
+    .founder-wrap.reverse .founder-content { order: 1; }
+    .founder-wrap.reverse .founder-portrait { order: 2; }
+    .founder-wrap.reverse .portrait-caption { order: 3; }
+  }
+
+  /* Catherine monogram */
+  .founder-portrait.ca::after { content: "CA"; }
 
   /* ============ SECTORS ============ */
   .sectors {
@@ -864,7 +905,7 @@
   <nav class="nav-links">
     <a href="#services">Services</a>
     <a href="#approach">Approach</a>
-    <a href="#founder">Founder</a>
+    <a href="#leadership">Leadership</a>
     <a href="#sectors">Sectors</a>
   </nav>
   <a href="#contact" class="nav-cta">Begin a Conversation</a>
@@ -1059,9 +1100,15 @@
   </div>
 </section>
 
-<!-- ============ FOUNDER ============ -->
-<section class="founder" id="founder">
-  <div class="founder-wrap">
+<!-- ============ LEADERSHIP ============ -->
+<section class="founder" id="leadership">
+  <div class="leadership-head container reveal">
+    <span class="eyebrow">The Partnership</span>
+    <h2 class="leadership-title">Senior-led, <em>every mandate</em>.</h2>
+  </div>
+
+  <!-- Partner · Max Heckman -->
+  <div class="founder-wrap" id="founder">
     <div class="founder-portrait reveal">
       <img src="max-heckman.jpg" alt="Max Heckman, Managing Partner, Heckman Global" />
       <span class="portrait-label">— Managing Partner</span>
@@ -1071,7 +1118,7 @@
       <span class="caption-role">— Managing Partner, Heckman Global</span>
     </figcaption>
     <div class="founder-content reveal">
-      <span class="eyebrow">The Founder</span>
+      <span class="eyebrow">Founder & Managing Partner</span>
       <h2>Max <em>Heckman</em></h2>
       <p>
         "Private funds distribution is one of the last corners of finance where the work is still done by hand. That's not a virtue — it's an inefficiency. The firms that compress that distance first will win the next decade of allocations."
@@ -1092,6 +1139,49 @@
         <div>
           <span class="cred-label">Coverage</span>
           <span class="cred-val">North America · EMEA · APAC · GCC</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="partner-divider rule"></div>
+
+  <!-- Partner · Catherine Ames -->
+  <div class="founder-wrap reverse" id="catherine-ames">
+    <div class="founder-portrait ca reveal">
+      <img src="catherine-ames.jpg" alt="Catherine Ames, Partner, Heckman Global" />
+      <span class="portrait-label">— Partner</span>
+    </div>
+    <figcaption class="portrait-caption">
+      <span class="caption-name">Catherine Ames</span>
+      <span class="caption-role">— Partner, Heckman Global</span>
+    </figcaption>
+    <div class="founder-content reveal">
+      <span class="eyebrow">Partner</span>
+      <h2>Catherine <em>Ames</em></h2>
+      <p>
+        "A great fund still has to be sold. Allocators commit to conviction, not decks — so our job is to carry a manager's real edge into the right room, at the right moment, and make the diligence that follows effortless."
+      </p>
+      <p>
+        Catherine Ames is a Partner at Heckman Global, where she leads sales, distribution, and investor coverage across the firm's mandates. She owns the relationships that turn a well-positioned fund into a closed allocation — building the case with each institution, running the process from first meeting to subscription, and pairing a deep LP network with the firm's AI-driven targeting so that every conversation reaches a genuinely qualified, genuinely interested counterparty.
+      </p>
+      <p>
+        Before Heckman Global, Catherine spent the better part of two decades in placement, sales, and investor relations for leading alternative asset managers, raising capital for general partners across private equity, venture, private credit, and real assets. She has run road shows on four continents, structured and negotiated commitments alongside GPs, and built the marketing narratives that get a fund taken seriously. Among LPs she is known for candor, preparation, and a refusal to waste anyone's time.
+      </p>
+      <div class="signature">— Catherine Ames</div>
+
+      <div class="credentials">
+        <div>
+          <span class="cred-label">Focus</span>
+          <span class="cred-val">Sales, Placement & Investor Coverage</span>
+        </div>
+        <div>
+          <span class="cred-label">Coverage</span>
+          <span class="cred-val">North America · EMEA · APAC · GCC</span>
+        </div>
+        <div class="cred-direct">
+          <span class="cred-label">Direct</span>
+          <a class="cred-val cred-email" href="mailto:catherine@heckmanglobal.com">catherine@heckmanglobal.com</a>
         </div>
       </div>
     </div>
@@ -1194,7 +1284,7 @@
       <h5>Firm</h5>
       <ul>
         <li><a href="#approach">Approach</a></li>
-        <li><a href="#founder">Founder</a></li>
+        <li><a href="#leadership">Leadership</a></li>
         <li><a href="#">Press</a></li>
         <li><a href="#">Careers</a></li>
       </ul>
@@ -1212,6 +1302,7 @@
       <h5>Contact</h5>
       <ul>
         <li><a href="mailto:max@heckmanglobal.com">max@heckmanglobal.com</a></li>
+        <li><a href="mailto:catherine@heckmanglobal.com">catherine@heckmanglobal.com</a></li>
         <li>Boston</li>
         <li>London</li>
         <li>Singapore</li>
